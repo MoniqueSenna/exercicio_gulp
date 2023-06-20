@@ -7,14 +7,14 @@ const concat = require('gulp-concat');
 // Tarefa para compilar o SASS
 function compileSass() {
     return gulp
-        .src('./src/main.scss')
+        .src('src/scss/main.scss')
         .pipe(sass().on('error', sass.logError))
         .pipe(gulp.dest('dist/css'));
 }
 
 // Tarefa para comprimir as imagens
 function compressImages() {
-    return gulp.src('./src/images/aniversario.jpg')
+    return gulp.src('src/images/*.jpg')
         
         .pipe(imagemin())
         .pipe(gulp.dest('dist/images'));
@@ -23,10 +23,10 @@ function compressImages() {
 // Tarefa para minificar o código JavaScript
 function minifyJavaScript() {
     return gulp
-        .src('./src/js/*.js')
+        .src('src/js/*.js')
         .pipe(concat('app.js')) // Concatena todos os arquivos JavaScript em um único arquivo
         .pipe(uglify())
-        .pipe(gulp.dest('./dist/js'));
+        .pipe(gulp.dest('dist/js'));
 }
 
 // Tarefa padrão do Gulp que executa todas as tarefas
